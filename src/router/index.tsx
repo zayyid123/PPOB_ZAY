@@ -4,6 +4,9 @@ import { ProtectedRoute, GuestRoute } from '@/components/guards/AuthGuard';
 import LoginPage from '@/pages/Login';
 import RegisterPage from '@/pages/Register';
 import HomePage from '@/pages/Home';
+import Profile from '@/pages/Profile';
+import Transaction from '@/pages/Transaction';
+import TopUp from '@/pages/TopUp';
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +30,18 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
+      },
+      {
+        path: '/transaction',
+        element: <Transaction />,
+      },
+      {
+        path: '/topup',
+        element: <TopUp />,
       },
     ],
   },
