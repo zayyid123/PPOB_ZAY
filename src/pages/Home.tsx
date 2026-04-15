@@ -1,13 +1,12 @@
-import { CreditCard } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
 import Header from '@/components/Header';
 import { services } from '@/constant/menus';
 import { Link } from 'react-router-dom';
+import BannerSlider from '@/components/BannerSlider';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-white">
       {/* Header / Navbar */}
       <Navbar />
 
@@ -37,23 +36,10 @@ export default function HomePage() {
           </div>
         </section>
 
-
-        {/* Recent Transactions Placeholder */}
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-4">Transaksi Terakhir</h2>
-          <Card className="border-dashed border-slate-300">
-            <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4">
-                <CreditCard className="w-7 h-7 text-slate-400" />
-              </div>
-              <p className="text-sm text-muted-foreground">Belum ada transaksi</p>
-              <p className="text-xs text-muted-foreground/70 mt-1">
-                Mulai gunakan layanan PPOB untuk melihat riwayat transaksi
-              </p>
-            </CardContent>
-          </Card>
-        </section>
+        {/* Banner Slider */}
+        <BannerSlider />
       </main>
     </div>
   );
 }
+
