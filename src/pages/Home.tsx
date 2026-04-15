@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Header from '@/components/Header';
-import { services } from '@/constant/menus';
+import { services } from '@/constant/services';
 import { Link } from 'react-router-dom';
 import BannerSlider from '@/components/BannerSlider';
 
