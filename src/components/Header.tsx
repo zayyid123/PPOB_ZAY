@@ -13,14 +13,14 @@ const Header = () => {
   return (
     <div className="w-full grid grid-cols-5">
       {/* Account */}
-      <div className="text-secondary col-span-2">
+      <div className="text-secondary col-span-5 md:col-span-2 mb-5 md:mb-0 flex flex-col gap-y-2 items-center md:items-start justify-end">
         <img src="/icon/profile.png" alt="Profile" className="w-12 h-12 rounded-full" />
         <p className="text-xl mt-3">Selamat Datang,</p>
         <p className="text-3xl font-semibold">{fullName}</p>
       </div>
 
       {/* Balance Card */}
-      <Card className="overflow-hidden border-0 shadow-xl shadow-indigo-200/30 col-span-3">
+      <Card className="overflow-hidden border-0 shadow-xl shadow-indigo-200/30 col-span-5 md:col-span-3">
         <div className="p-6 sm:p-8 text-white relative">
           <div className="relative z-10 flex flex-col gap-y-2">
             <p className="text-lg font-medium mb-1">Saldo Anda</p>
