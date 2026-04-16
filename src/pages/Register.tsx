@@ -4,8 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User, Eye, EyeOff, AtSign, Lock } from 'lucide-react';
 import { useState } from 'react';
 import { registerSchema, type RegisterFormValues } from '@/schemas/auth';
-import { useAppDispatch } from '@/store/hooks';
-import { setCredentials } from '@/store/slices/authSlice';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -17,10 +15,11 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import Logo from '@/components/Logo';
+import { apiRegister } from '@/api/auth';
+import { toast } from 'sonner';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -40,17 +39,15 @@ export default function RegisterPage() {
   });
 
   const onSubmit = async (data: RegisterFormValues) => {
-    // TODO: Replace with actual API call
-    console.log('Register data:', data);
+    try {
+      await apiRegister(data);
 
-    // Simulate API response
-    dispatch(
-      setCredentials({
-        user: { email: data.email, first_name: data.first_name, last_name: data.last_name },
-        token: 'dummy-token',
-      }),
-    );
-    navigate('/');
+      toast.success('Akun berhasil dibuat');
+
+      navigate('/login');
+    } catch (error) {
+      toast.error(error.response.data.message || 'Gagal membuat akun');
+    }
   };
 
   return (

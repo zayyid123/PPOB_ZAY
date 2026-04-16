@@ -4,6 +4,6 @@ import type { LoginRequest, AuthResponse, RegisterRequest, ProfileResponse } fro
 export const apiLogin = (data: LoginRequest) => api.post<AuthResponse>('/login', data);
 
 export const apiRegister = (data: RegisterRequest) =>
-  api.post<AuthResponse>('/register', data);
+  api.post<AuthResponse>('/registration', data);
 
 export const apiProfile = (headers?: { Authorization: string }) => api.get<ProfileResponse>('/profile', { headers });

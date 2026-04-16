@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/card';
 import Logo from '@/components/Logo';
 import { apiLogin, apiProfile } from '@/api/auth';
+import { toast } from 'sonner';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -45,6 +46,8 @@ export default function LoginPage() {
       });
       const dataProfile = responseProfile.data;
 
+      toast.success('Login berhasil');
+
       dispatch(
         setCredentials({
           user: {
@@ -57,7 +60,7 @@ export default function LoginPage() {
       );
       navigate('/');
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.message || 'Login gagal');
     }
   };
 

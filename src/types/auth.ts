@@ -23,7 +23,6 @@ export interface RegisterRequest {
   last_name: string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
 export type AuthResponse = ApiResponse<{ token: string }>;
