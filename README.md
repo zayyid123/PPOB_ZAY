@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# SIMS PPOB - Zayyid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sebuah aplikasi web PPOB (Payment Point Online Bank) yang dibangun menggunakan React, TypeScript, dan Vite.
 
-Currently, two official plugins are available:
+## Cara Install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Ikuti langkah-langkah di bawah ini untuk menjalankan proyek ini di lingkungan lokal Anda:
 
-## React Compiler
+### 1. Prasyarat
+Pastikan Anda sudah menginstal:
+- [Node.js](https://nodejs.org/) (versi LTS direkomendasikan)
+- NPM (termasuk saat menginstal Node.js)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Instalasi Dependensi
+Jalankan perintah berikut di terminal untuk menginstal semua package yang diperlukan:
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Konfigurasi Environment (ENV)
+Proyek ini memerlukan konfigurasi URL API. Ikuti langkah berikut:
+1. Salin file `.env.example` dan ubah namanya menjadi `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+2. Buka file `.env` dan sesuaikan nilai `VITE_API_URL` dengan URL API yang valid:
+   ```env
+   VITE_API_URL='ISI_DENGAN_URL_API_ANDA'
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 4. Menjalankan Proyek (Development)
+Untuk menjalankan server pengembangan lokal, gunakan perintah:
+```bash
+npm run dev
 ```
+Setelah dijalankan, buka browser dan akses alamat yang tertera di terminal (biasanya `http://localhost:5173`).
+
+### 5. Build untuk Produksi
+Jika ingin melakukan build proyek untuk deployment:
+```bash
+npm run build
+```
+Hasil build akan tersedia di folder `/dist`.
+
+## Fitur Utama
+- Authentication (Login & Register)
+- Dashboard dengan Banner & Services
+- Top Up Saldo
+- Pembayaran Layanan (Dynamic Routing)
+- Riwayat Transaksi (Pagination)
+- Manajemen Profil (Edit Data & Foto Profil)
+
+## Account Percobaan
+
+Email: [zay@gmail.com]
+Password: [12345678]
+
+---
