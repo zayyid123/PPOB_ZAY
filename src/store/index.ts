@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
 
+import servicesReducer from './slices/servicesSlices';
+
 // load persisted data from localStorage
 function loadState() {
   try {
@@ -25,6 +27,7 @@ function saveState(state: RootState) {
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    services: servicesReducer,
   },
   preloadedState: loadState(),
 });

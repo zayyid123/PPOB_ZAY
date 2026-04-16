@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import Logo from '@/components/Logo';
+import { apiLogin, apiProfile } from '@/api/auth';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -36,13 +37,28 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data: LoginFormValues) => {
-    dispatch(
-      setCredentials({
-        user: { email: data.email, first_name: 'User', last_name: 'User' },
-        token: 'dummy-token',
-      }),
-    );
-    navigate('/');
+    try {
+      const response = await apiLogin(data);
+      const dataLogin = response.data;
+      const responseProfile = await apiProfile({
+        Authorization: `Bearer ${dataLogin?.data.token}`,
+      });
+      const dataProfile = responseProfile.data;
+
+      dispatch(
+        setCredentials({
+          user: {
+            email: data.email,
+            first_name: dataProfile?.data?.first_name,
+            last_name: dataProfile?.data?.last_name,
+          },
+          token: dataLogin?.data.token,
+        }),
+      );
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -3,4 +3,3 @@ export const menus = [
   { to: '/transaction', label: 'Transaction' },
   { to: '/profile', label: 'Akun' },
 ];
-

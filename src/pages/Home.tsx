@@ -26,7 +26,11 @@ export default function HomePage() {
                 <div
                   className={`w-16 h-16 rounded-xl ${service.bg} flex items-center justify-center mb-3 group-hover:shadow-md group-hover:-translate-y-1 transition-all duration-300`}
                 >
-                  <img src={service.icon} alt={service.label} className="w-12 h-12 object-contain" />
+                  <img
+                    src={service.icon}
+                    alt={service.label}
+                    className="w-12 h-12 object-contain"
+                  />
                 </div>
                 <span className="text-[11px] leading-tight font-medium text-center text-slate-600 group-hover:text-primary transition-colors max-w-[80px]">
                   {service.label}
@@ -42,4 +46,3 @@ export default function HomePage() {
     </div>
   );
 }
-

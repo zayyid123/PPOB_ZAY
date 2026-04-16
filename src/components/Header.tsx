@@ -15,8 +15,8 @@ const Header = () => {
       {/* Account */}
       <div className="text-secondary col-span-2">
         <img src="/icon/profile.png" alt="Profile" className="w-12 h-12 rounded-full" />
-        <p className='text-xl mt-3'>Selamat Datang,</p>
-        <p className='text-3xl font-semibold'>{fullName}</p>
+        <p className="text-xl mt-3">Selamat Datang,</p>
+        <p className="text-3xl font-semibold">{fullName}</p>
       </div>
 
       {/* Balance Card */}
@@ -25,11 +25,13 @@ const Header = () => {
           <div className="relative z-10 flex flex-col gap-y-2">
             <p className="text-lg font-medium mb-1">Saldo Anda</p>
             <div className="flex items-center gap-3">
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Rp {showSaldo ? '0' : '••••••'}</h2>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                Rp {showSaldo ? '0' : '••••••'}
+              </h2>
             </div>
-            <Button 
+            <Button
               variant="outliner-primary"
-              className='w-fit'
+              className="w-fit"
               onClick={() => setShowSaldo(!showSaldo)}
             >
               {showSaldo ? 'Sembunyikan Saldo' : 'Lihat Saldo'}

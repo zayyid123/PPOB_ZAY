@@ -15,7 +15,7 @@ const BannerSlider = () => {
       interval = setInterval(() => {
         if (scrollRef.current) {
           const { scrollLeft, offsetWidth, scrollWidth } = scrollRef.current;
-          
+
           if (scrollLeft + offsetWidth >= scrollWidth - 10) {
             scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
           } else {
@@ -88,5 +88,3 @@ const BannerSlider = () => {
 };
 
 export default BannerSlider;
-
-
