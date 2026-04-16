@@ -37,11 +37,12 @@ const Payment = () => {
       setIsSuccess(true);
       setIsResultOpen(true);
       setIsConfirmOpen(false);
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       setIsSuccess(false);
       setIsResultOpen(true);
       setIsConfirmOpen(false);
-      toast.error(error.response?.data?.message || 'Gagal melakukan pembayaran');
+      toast.error(error?.response?.data?.message || 'Gagal melakukan pembayaran');
     } finally {
       setIsLoading(false);
     }

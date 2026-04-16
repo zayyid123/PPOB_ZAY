@@ -22,8 +22,9 @@ export const fetchServices = createAsyncThunk(
     try {
       const response = await apiGetServices();
       return response.data.data || [];
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch services');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      return rejectWithValue(error?.response?.data?.message || 'Failed to fetch services');
     }
   },
 );

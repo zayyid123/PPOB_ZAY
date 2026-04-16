@@ -45,8 +45,9 @@ export default function RegisterPage() {
       toast.success('Akun berhasil dibuat');
 
       navigate('/login');
-    } catch (error) {
-      toast.error(error.response.data.message || 'Gagal membuat akun');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Gagal membuat akun');
     }
   };
 

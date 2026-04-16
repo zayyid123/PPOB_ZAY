@@ -22,8 +22,9 @@ export const fetchBanners = createAsyncThunk(
     try {
       const response = await apiGetBanners();
       return response.data.data || [];
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Gagal memuat banner');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      return rejectWithValue(error?.response?.data?.message || 'Gagal memuat banner');
     }
   },
 );

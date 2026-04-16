@@ -17,7 +17,7 @@ const Transaction = () => {
     setIsLoading(true);
     try {
       const res = await apiGetHistory(newOffset, limit);
-      const newRecords = res.data.data.records;
+      const newRecords = res?.data?.data?.records || [];
 
       if (newRecords.length < limit) {
         setHasMore(false);
@@ -28,8 +28,9 @@ const Transaction = () => {
       } else {
         setTransactions((prev) => [...prev, ...newRecords]);
       }
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Gagal mengambil riwayat transaksi');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Gagal mengambil riwayat transaksi');
     } finally {
       setIsLoading(false);
     }

@@ -16,7 +16,7 @@ const Header = () => {
   useEffect(() => {
     try {
       apiGetBalance().then((res) => {
-        setBalance(res.data.data.balance);
+        setBalance(Number(res?.data?.data?.balance ?? 0));
       });
     } catch (error) {
       console.log(error);
@@ -29,7 +29,7 @@ const Header = () => {
       {/* Account */}
       <div className="text-secondary col-span-5 md:col-span-2 mb-5 md:mb-0 flex flex-col gap-y-2 items-center md:items-start justify-end">
         <img
-          src={user.profile_image.includes('/null') ? '/icon/profile.png' : user.profile_image}
+          src={user?.profile_image?.includes('/null') ? '/icon/profile.png' : user?.profile_image}
           alt="Profile"
           className="w-12 h-12 rounded-full"
         />

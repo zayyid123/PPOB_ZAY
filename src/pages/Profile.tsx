@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Navbar from '@/components/Navbar';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logout, updateUser } from '@/store/slices/authSlice';
@@ -33,7 +34,9 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const res = await apiGetProfile();
-        dispatch(updateUser(res.data.data));
+        if (res?.data?.data) {
+          dispatch(updateUser(res.data.data));
+        }
       } catch (error) {
         console.error('Failed to sync profile', error);
       }
@@ -53,8 +56,8 @@ const Profile = () => {
       // Revert if cancelling
       if (user) {
         setFormData({
-          first_name: user.first_name,
-          last_name: user.last_name,
+          first_name: user.first_name || '',
+          last_name: user.last_name || '',
         });
       }
       setErrors({});
@@ -89,12 +92,14 @@ const Profile = () => {
 
     try {
       const res = await apiUpdateProfile(formData);
-      dispatch(updateUser(res.data.data));
+      if (res?.data?.data) {
+        dispatch(updateUser(res.data.data));
+      }
       setIsEditing(false);
       setErrors({});
       toast.success('Profil berhasil diperbarui');
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Gagal memperbarui profil');
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Gagal memperbarui profil');
     }
   };
 
@@ -116,10 +121,12 @@ const Profile = () => {
 
     try {
       const res = await apiUpdateProfileImage(fileData);
-      dispatch(updateUser(res.data.data));
+      if (res?.data?.data) {
+        dispatch(updateUser(res.data.data));
+      }
       toast.success('Foto profil berhasil diperbarui');
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Gagal memperbarui foto profil');
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Gagal memperbarui foto profil');
     }
   };
 

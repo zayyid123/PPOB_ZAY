@@ -32,8 +32,9 @@ const TopUp = () => {
       toast.success(res.data.message);
       setAmount('');
       navigate('/');
-    } catch (error) {
-      toast.error(error.response.data.message || 'Gagal Top Up');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Gagal Top Up');
     }
   };
 

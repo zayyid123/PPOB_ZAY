@@ -42,7 +42,7 @@ export default function LoginPage() {
       const response = await apiLogin(data);
       const dataLogin = response.data;
       const responseProfile = await apiProfile({
-        Authorization: `Bearer ${dataLogin?.data.token}`,
+        Authorization: `Bearer ${dataLogin?.data?.token}`,
       });
       const dataProfile = responseProfile.data;
 
@@ -56,12 +56,13 @@ export default function LoginPage() {
             last_name: dataProfile?.data?.last_name,
             profile_image: dataProfile?.data?.profile_image,
           },
-          token: dataLogin?.data.token,
+          token: dataLogin?.data?.token ?? '',
         }),
       );
       navigate('/');
-    } catch (error) {
-      toast.error(error.response.data.message || 'Login gagal');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Login gagal');
     }
   };
 
