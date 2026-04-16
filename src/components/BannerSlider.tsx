@@ -1,7 +1,9 @@
-import { banners } from '@/constant/banners';
 import { useRef, useState, useEffect } from 'react';
+import { useAppSelector } from '@/store/hooks';
+import { selectBanners } from '@/store/slices/bannerSlice';
 
 const BannerSlider = () => {
+  const bannersFromStore = useAppSelector(selectBanners);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -11,7 +13,7 @@ const BannerSlider = () => {
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
 
-    if (!isDragging) {
+    if (!isDragging && bannersFromStore.length > 0) {
       interval = setInterval(() => {
         if (scrollRef.current) {
           const { scrollLeft, offsetWidth, scrollWidth } = scrollRef.current;
@@ -29,7 +31,7 @@ const BannerSlider = () => {
     }
 
     return () => clearInterval(interval);
-  }, [isDragging]);
+  }, [isDragging, bannersFromStore.length]);
 
   const onMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;
@@ -54,6 +56,8 @@ const BannerSlider = () => {
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
+  if (bannersFromStore.length === 0) return null;
+
   return (
     <section className="mt-12 select-none">
       <h2 className="text-lg font-semibold text-secondary mb-4">Temukan promo menarik</h2>
@@ -68,14 +72,14 @@ const BannerSlider = () => {
             isDragging ? 'cursor-grabbing scale-[0.995]' : 'cursor-grab snap-x snap-mandatory'
           }`}
         >
-          {banners.map((banner) => (
+          {bannersFromStore.map((banner, index) => (
             <div
-              key={banner.id}
+              key={`${banner.banner_name}-${index}`}
               className="flex-none w-[280px] sm:w-[320px] md:w-[350px] aspect-16/7 md:aspect-3/1 rounded-xl overflow-hidden snap-start hover:shadow-lg transition-transform duration-300 pointer-events-none"
             >
               <img
-                src={banner.image}
-                alt={banner.title}
+                src={banner.banner_image}
+                alt={banner.banner_name}
                 className="w-full h-full object-cover"
                 draggable={false}
               />

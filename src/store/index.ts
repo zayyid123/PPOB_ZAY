@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
-
 import servicesReducer from './slices/servicesSlices';
+import bannerReducer from './slices/bannerSlice';
 
 // load persisted data from localStorage
 function loadState() {
@@ -28,6 +28,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     services: servicesReducer,
+    banner: bannerReducer,
   },
   preloadedState: loadState(),
 });
