@@ -42,10 +42,6 @@ const Profile = () => {
     };
     fetchProfile();
   }, [dispatch]);
-
-  // By removing the useEffect and using the 'key' prop in the JSX below,
-  // React will automatically re-initialize the formData state whenever 
-  // the user email changes (e.g. after initial login or profile fetch).
   
   const handleLogout = () => {
 
@@ -104,7 +100,6 @@ const Profile = () => {
       toast.error(error.response?.data?.message || 'Gagal memperbarui profil');
     }
   };
-
 
   const handleImageClick = () => {
     fileInputRef.current?.click();
