@@ -15,11 +15,11 @@ export default function HomePage() {
   const isBannersLoading = useAppSelector(selectBannersLoading);
 
   useEffect(() => {
-    // Fetch services jika kosong dan TIDAK sedang loading
+    // get services
     if (servicesFromStore.length === 0 && !isServicesLoading) {
       dispatch(fetchServices());
     }
-    // Fetch banners jika kosong dan TIDAK sedang loading
+    // get banners
     if (bannersFromStore.length === 0 && !isBannersLoading) {
       dispatch(fetchBanners());
     }

@@ -1,14 +1,28 @@
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/store/hooks';
+import { apiGetBalance } from '@/api/transaction';
+import { toast } from 'sonner';
 
 const Header = () => {
+  const [showSaldo, setShowSaldo] = useState(false);
+  const [balance, setBalance] = useState(0);
+
   const user = useAppSelector((state) => state.auth.user);
   const fullName = user ? `${user.first_name} ${user.last_name}` : 'Pengguna';
 
-  const [showSaldo, setShowSaldo] = useState(false);
+  useEffect(() => {
+    try {
+      apiGetBalance().then((res) => {
+        setBalance(res.data.data.balance);
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error('Gagal mengambil saldo');
+    }
+  }, []);
 
   return (
     <div className="w-full grid grid-cols-5">
@@ -26,7 +40,7 @@ const Header = () => {
             <p className="text-lg font-medium mb-1">Saldo Anda</p>
             <div className="flex items-center gap-3">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                Rp {showSaldo ? '0' : '••••••'}
+                Rp {showSaldo ? balance.toLocaleString('id-ID') : '••••••'}
               </h2>
             </div>
             <Button
