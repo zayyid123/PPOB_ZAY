@@ -7,3 +7,6 @@ export const apiTopUp = (top_up_amount: number) => api.post<ResponseTopUp>('/top
 
 export const apiGetHistory = (offset = 0, limit = 5) =>
   api.get<ResponseHistory>(`/transaction/history?offset=${offset}&limit=${limit}`);
+
+export const apiPostTransaction = (service_code: string) =>
+  api.post('/transaction', { service_code });

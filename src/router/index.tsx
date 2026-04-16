@@ -7,6 +7,7 @@ import HomePage from '@/pages/Home';
 import Profile from '@/pages/Profile';
 import Transaction from '@/pages/Transaction';
 import TopUp from '@/pages/TopUp';
+import Payment from '@/pages/Payment';
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ export const router = createBrowserRouter([
         path: '/topup',
         element: <TopUp />,
       },
+      {
+        path: '/pembelian/:serviceCode',
+        element: <Payment />,
+      },
     ],
   },
 ]);
+

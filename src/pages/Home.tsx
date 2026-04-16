@@ -38,7 +38,8 @@ export default function HomePage() {
             {servicesFromStore.map((service) => (
               <Link
                 key={service.service_code}
-                to={`/transaction/${service.service_code}`}
+                to={`/pembelian/${service.service_code}`}
+
                 className="flex flex-col items-center group cursor-pointer"
               >
                 <div
