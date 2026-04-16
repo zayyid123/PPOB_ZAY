@@ -7,7 +7,7 @@ import { apiGetBalance } from '@/api/transaction';
 import { toast } from 'sonner';
 
 const Header = () => {
-  const [showSaldo, setShowSaldo] = useState(false);
+  const [showSaldo, setShowSaldo] = useState(true);
   const [balance, setBalance] = useState(0);
 
   const user = useAppSelector((state) => state.auth.user);
