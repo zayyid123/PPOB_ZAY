@@ -18,15 +18,15 @@ const Transaction = () => {
     try {
       const res = await apiGetHistory(newOffset, limit);
       const newRecords = res.data.data.records;
-      
+
       if (newRecords.length < limit) {
         setHasMore(false);
       }
-      
+
       if (newOffset === 0) {
         setTransactions(newRecords);
       } else {
-        setTransactions(prev => [...prev, ...newRecords]);
+        setTransactions((prev) => [...prev, ...newRecords]);
       }
     } catch (error) {
       toast.error(error.response?.data?.message || 'Gagal mengambil riwayat transaksi');
@@ -47,14 +47,18 @@ const Transaction = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('id-ID', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    }).format(date).replace('.', ':') + ' WIB';
+    return (
+      new Intl.DateTimeFormat('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+        .format(date)
+        .replace('.', ':') + ' WIB'
+    );
   };
 
   return (
@@ -68,37 +72,29 @@ const Transaction = () => {
           <h2 className="text-xl font-bold text-secondary">Semua Transaksi</h2>
 
           <div className="space-y-4">
-            {transactions.length > 0 ? (
-              transactions.map((item, idx) => (
-                <div
-                  key={item.invoice_number + idx}
-                  className="flex items-center justify-between p-4 sm:p-6 border border-muted rounded-xl"
-                >
-                  <div className="flex flex-col gap-y-1">
-                    <p
-                      className={`text-xl font-bold ${
-                        item.transaction_type === 'TOPUP' ? 'text-emerald-500' : 'text-primary'
-                      }`}
-                    >
-                      {item.transaction_type === 'TOPUP' ? '+' : '-'} Rp
-                      {item.total_amount.toLocaleString('id-ID')}
-                    </p>
-                    <p className="text-muted text-xs sm:text-sm">
-                      {formatDate(item.created_on)}
-                    </p>
+            {transactions.length > 0
+              ? transactions.map((item, idx) => (
+                  <div
+                    key={item.invoice_number + idx}
+                    className="flex items-center justify-between p-4 sm:p-6 border border-muted rounded-xl"
+                  >
+                    <div className="flex flex-col gap-y-1">
+                      <p
+                        className={`text-xl font-bold ${
+                          item.transaction_type === 'TOPUP' ? 'text-emerald-500' : 'text-primary'
+                        }`}
+                      >
+                        {item.transaction_type === 'TOPUP' ? '+' : '-'} Rp
+                        {item.total_amount.toLocaleString('id-ID')}
+                      </p>
+                      <p className="text-muted text-xs sm:text-sm">{formatDate(item.created_on)}</p>
+                    </div>
+                    <p className="text-secondary text-sm font-medium">{item.description}</p>
                   </div>
-                  <p className="text-secondary text-sm font-medium">
-                    {item.description}
-                  </p>
-                </div>
-              ))
-            ) : (
-              !isLoading && (
-                <div className="text-center py-20 text-muted">
-                  Belum ada riwayat transaksi
-                </div>
-              )
-            )}
+                ))
+              : !isLoading && (
+                  <div className="text-center py-20 text-muted">Belum ada riwayat transaksi</div>
+                )}
           </div>
 
           {hasMore && transactions.length > 0 && (

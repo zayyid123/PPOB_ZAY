@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import BannerSlider from '@/components/BannerSlider';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useEffect } from 'react';
-import { fetchServices, selectServices, selectServicesLoading } from '@/store/slices/servicesSlices';
+import {
+  fetchServices,
+  selectServices,
+  selectServicesLoading,
+} from '@/store/slices/servicesSlices';
 import { fetchBanners, selectBanners, selectBannersLoading } from '@/store/slices/bannerSlice';
 
 export default function HomePage() {
@@ -23,7 +27,13 @@ export default function HomePage() {
     if (bannersFromStore.length === 0 && !isBannersLoading) {
       dispatch(fetchBanners());
     }
-  }, [dispatch, servicesFromStore.length, bannersFromStore.length, isServicesLoading, isBannersLoading]);
+  }, [
+    dispatch,
+    servicesFromStore.length,
+    bannersFromStore.length,
+    isServicesLoading,
+    isBannersLoading,
+  ]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -39,12 +49,9 @@ export default function HomePage() {
               <Link
                 key={service.service_code}
                 to={`/pembelian/${service.service_code}`}
-
                 className="flex flex-col items-center group cursor-pointer"
               >
-                <div
-                  className="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center mb-3 group-hover:shadow-md group-hover:-translate-y-1 transition-all duration-300"
-                >
+                <div className="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center mb-3 group-hover:shadow-md group-hover:-translate-y-1 transition-all duration-300">
                   <img
                     src={service.service_icon}
                     alt={service.service_name}

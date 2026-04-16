@@ -25,7 +25,7 @@ export const fetchServices = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch services');
     }
-  }
+  },
 );
 
 const servicesSlice = createSlice({

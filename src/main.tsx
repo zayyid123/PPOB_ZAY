@@ -10,5 +10,5 @@ createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <Toaster position="bottom-right" richColors theme="light" closeButton />
     <App />
-  </Provider>
+  </Provider>,
 );

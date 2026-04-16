@@ -3,7 +3,8 @@ import type { ResponseBalance, ResponseTopUp, ResponseHistory } from '@/types/tr
 
 export const apiGetBalance = () => api.get<ResponseBalance>('/balance');
 
-export const apiTopUp = (top_up_amount: number) => api.post<ResponseTopUp>('/topup', { top_up_amount });
+export const apiTopUp = (top_up_amount: number) =>
+  api.post<ResponseTopUp>('/topup', { top_up_amount });
 
 export const apiGetHistory = (offset = 0, limit = 5) =>
   api.get<ResponseHistory>(`/transaction/history?offset=${offset}&limit=${limit}`);

@@ -34,7 +34,7 @@ const TopUp = () => {
       navigate('/');
     } catch (error) {
       toast.error(error.response.data.message || 'Gagal Top Up');
-    }    
+    }
   };
 
   return (

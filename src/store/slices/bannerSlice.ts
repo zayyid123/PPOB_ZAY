@@ -25,7 +25,7 @@ export const fetchBanners = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Gagal memuat banner');
     }
-  }
+  },
 );
 
 const bannerSlice = createSlice({

@@ -1,12 +1,12 @@
-import type { ApiResponse } from "./api";
+import type { ApiResponse } from './api';
 
 export type ResponseBalance = ApiResponse<{
-    balance: number;
-}>
+  balance: number;
+}>;
 
 export type ResponseTopUp = ApiResponse<{
-    balance: number;
-}>
+  balance: number;
+}>;
 
 export interface TransactionRecord {
   invoice_number: string;
@@ -20,4 +20,4 @@ export type ResponseHistory = ApiResponse<{
   offset: number;
   limit: number;
   records: TransactionRecord[];
-}>
+}>;

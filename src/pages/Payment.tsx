@@ -90,8 +90,12 @@ const Payment = () => {
               <Wallet className="w-8 h-8 text-white" />
             </div>
             <div className="space-y-2">
-              <p className="text-secondary font-medium">Beli {service.service_name.toLowerCase()} senilai</p>
-              <h3 className="text-2xl font-bold text-secondary">Rp{service.service_tariff.toLocaleString('id-ID')} ?</h3>
+              <p className="text-secondary font-medium">
+                Beli {service.service_name.toLowerCase()} senilai
+              </p>
+              <h3 className="text-2xl font-bold text-secondary">
+                Rp{service.service_tariff.toLocaleString('id-ID')} ?
+              </h3>
             </div>
             <div className="w-full space-y-3">
               <button
@@ -117,12 +121,22 @@ const Payment = () => {
       {isResultOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-xl p-8 max-w-sm w-full flex flex-col items-center text-center space-y-6">
-            <div className={`w-16 h-16 ${isSuccess ? 'bg-emerald-500' : 'bg-primary'} rounded-full flex items-center justify-center`}>
-              {isSuccess ? <CheckCircle2 className="w-8 h-8 text-white" /> : <XCircle className="w-8 h-8 text-white" />}
+            <div
+              className={`w-16 h-16 ${isSuccess ? 'bg-emerald-500' : 'bg-primary'} rounded-full flex items-center justify-center`}
+            >
+              {isSuccess ? (
+                <CheckCircle2 className="w-8 h-8 text-white" />
+              ) : (
+                <XCircle className="w-8 h-8 text-white" />
+              )}
             </div>
             <div className="space-y-2">
-              <p className="text-secondary font-medium">Pembayaran {service.service_name.toLowerCase()} sebesar</p>
-              <h3 className="text-2xl font-bold text-secondary">Rp{service.service_tariff.toLocaleString('id-ID')}</h3>
+              <p className="text-secondary font-medium">
+                Pembayaran {service.service_name.toLowerCase()} sebesar
+              </p>
+              <h3 className="text-2xl font-bold text-secondary">
+                Rp{service.service_tariff.toLocaleString('id-ID')}
+              </h3>
               <p className="text-secondary font-medium">{isSuccess ? 'berhasil!' : 'gagal'}</p>
             </div>
             <button

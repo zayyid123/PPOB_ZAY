@@ -15,12 +15,11 @@ const profileSchema = z.object({
   last_name: z.string().min(1, 'Nama belakang harus diisi'),
 });
 
-
 const Profile = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.auth.user);
-  
+
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     first_name: user?.first_name || '',
@@ -28,7 +27,6 @@ const Profile = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
-
 
   // Sync profile data on mount
   useEffect(() => {
@@ -42,9 +40,8 @@ const Profile = () => {
     };
     fetchProfile();
   }, [dispatch]);
-  
-  const handleLogout = () => {
 
+  const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem('auth');
     navigate('/login');
@@ -80,7 +77,7 @@ const Profile = () => {
 
   const handleUpdateProfile = async () => {
     const validation = profileSchema.safeParse(formData);
-    
+
     if (!validation.success) {
       const fieldErrors: Record<string, string> = {};
       validation.error.issues.forEach((err) => {
@@ -126,9 +123,10 @@ const Profile = () => {
     }
   };
 
-  const profileImage = user?.profile_image && !user.profile_image.includes('null') 
-    ? user.profile_image 
-    : '/icon/profile.png';
+  const profileImage =
+    user?.profile_image && !user.profile_image.includes('null')
+      ? user.profile_image
+      : '/icon/profile.png';
 
   const fullName = user ? `${user.first_name} ${user.last_name}` : '';
 
@@ -136,7 +134,10 @@ const Profile = () => {
     <div className="min-h-screen bg-white pb-20">
       <Navbar />
 
-      <main key={user?.email} className="max-w-3xl mx-auto px-4 sm:px-6 py-12 flex flex-col items-center">
+      <main
+        key={user?.email}
+        className="max-w-3xl mx-auto px-4 sm:px-6 py-12 flex flex-col items-center"
+      >
         {/* Profile Header */}
         <div className="relative group cursor-pointer" onClick={handleImageClick}>
           <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-muted relative">
@@ -161,9 +162,7 @@ const Profile = () => {
           />
         </div>
 
-        <h1 className="text-3xl font-bold text-secondary mt-6 mb-12 text-center">
-          {fullName}
-        </h1>
+        <h1 className="text-3xl font-bold text-secondary mt-6 mb-12 text-center">{fullName}</h1>
 
         {/* Form */}
         <div className="w-full max-w-xl space-y-6 text-secondary">
@@ -209,7 +208,6 @@ const Profile = () => {
             {errors.last_name && <p className="text-xs text-destructive">{errors.last_name}</p>}
           </div>
 
-
           <div className="pt-6 space-y-4">
             {!isEditing ? (
               <>
@@ -220,11 +218,7 @@ const Profile = () => {
                 >
                   Edit Profile
                 </Button>
-                <Button
-                  variant="default"
-                  className="w-full h-12 rounded-md"
-                  onClick={handleLogout}
-                >
+                <Button variant="default" className="w-full h-12 rounded-md" onClick={handleLogout}>
                   Logout
                 </Button>
               </>
