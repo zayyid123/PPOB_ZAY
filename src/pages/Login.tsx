@@ -54,6 +54,7 @@ export default function LoginPage() {
             email: data.email,
             first_name: dataProfile?.data?.first_name,
             last_name: dataProfile?.data?.last_name,
+            profile_image: dataProfile?.data?.profile_image,
           },
           token: dataLogin?.data.token,
         }),

@@ -28,7 +28,7 @@ const Header = () => {
     <div className="w-full grid grid-cols-5">
       {/* Account */}
       <div className="text-secondary col-span-5 md:col-span-2 mb-5 md:mb-0 flex flex-col gap-y-2 items-center md:items-start justify-end">
-        <img src="/icon/profile.png" alt="Profile" className="w-12 h-12 rounded-full" />
+        <img src={user.profile_image.includes('/null') ? '/icon/profile.png' : user.profile_image} alt="Profile" className="w-12 h-12 rounded-full" />
         <p className="text-xl mt-3">Selamat Datang,</p>
         <p className="text-3xl font-semibold">{fullName}</p>
       </div>
